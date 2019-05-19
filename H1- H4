@@ -87,3 +87,17 @@ H3
  
 
 H4
+
+ var a= "one";
+ var b= "two";
+ var c= "three";
+ 
+ var result=table(a,b,c);
+ 
+ console.log(result); 
+ 
+ function table(a,b,c){
+ 	var combinetable=[];
+ 	combinetable.push(a,b,c);
+ 	return combinetable;
+ }
