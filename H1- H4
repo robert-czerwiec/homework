@@ -101,3 +101,31 @@ H4
  	combinetable.push(a,b,c);
  	return combinetable;
  }
+ 
+ 
+ 
+ H5
+ 
+ 
+ var dictionary={cat:"kot", dog: "pies", carpet: "dywan", car: "auto"};
+
+function translate(element){
+return dictionary[element];
+}
+
+console.log(translate("cat"));
+console.log(translate("dog"));
+console.log(translate("carpet"));
+console.log(translate("car"));
+
+var myWord1=translate("cat");
+console.log(myWord1);
+
+var myWord2=translate("dog");
+console.log(myWord2);
+
+var myWord3=translate("carpet");
+console.log(myWord3);
+
+var myWord4=translate("car");
+console.log(myWord4);
