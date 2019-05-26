@@ -1,0 +1,80 @@
+//H2.1 a
+
+/*
+
+var button = document.getElementById('mybutton');
+       
+var Przycisk = {
+    name: "Robert",       
+    writeName: function(){
+                
+        var klik = function() {
+            alert(this.name);
+        };
+        
+        button.addEventListener('click', klik);
+    }
+}
+
+Przycisk.writeName();
+
+*/
+
+//H2.1 b
+
+/*
+
+var button = document.getElementById('mybutton');
+       
+var Przycisk = {
+    name: "Robert",       
+    writeName: function(){
+        var self=this;
+        var klik = function() {
+            alert(self.name);
+        };
+        
+        button.addEventListener('click', klik);
+    }
+}
+
+Przycisk.writeName();
+
+*/
+
+//H2.1 c
+
+/*
+var button = document.getElementById('mybutton');
+       
+var Przycisk = {
+    name: "Robert",       
+    writeName: function(){
+        var klik = function() {
+            alert(this.name);
+        };
+        
+        button.addEventListener('click', klik.bind(Przycisk));
+    }
+}
+
+Przycisk.writeName();
+
+*/
+
+//H2.1 d
+
+var button = document.getElementById('mybutton');
+       
+var Przycisk = {
+    name: "Robert",       
+    writeName: function(){
+         var klik = () =>{ 
+            alert(this.name);
+        };
+        
+        button.addEventListener('click', klik.bind(Przycisk));
+    }
+}
+
+Przycisk.writeName();
