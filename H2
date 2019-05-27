@@ -38,6 +38,21 @@ var Przycisk = {
     }
 }
 
+
+ //H2.2 a
+  
+  var product={name:"Audi",price: 20000, color: "red"};
+	console.log(product.name);
+	console.log(product["color"]);
+  
+  
+ 	//H2.2 b
+  var x;
+  for (x in product) {
+  	y=x+" "+product[x];
+     console.log(y);
+  }
+  
 Przycisk.writeName();
 
 */
