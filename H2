@@ -80,6 +80,70 @@ var Przycisk = {
 Przycisk.writeName();
 
 
+//H2.2 a
+  
+  /*
+  
+  var product={125:"lcd monitor",111:"led display",133:"wirelles keyboard",144:"hard disc",155:"ram memory 1200Mhz"};
+    
+  var id;
+  function translate(id){
+  
+  if (id==111) {
+      return console.log(product[111]);
+    } else if (id==125) {  
+  		return console.log(product[125]);
+    } else if (id==133) {  
+  		return console.log(product[133]);
+    } else if (id==144) {  
+  		return console.log(product[144]);
+    } else if (id==155) {  
+  		return console.log(product[155]);
+    } else  {  
+  		return console.log("unknow product");
+    } 
+   
+  }
+ 
+  translate(111);
+  translate(133);
+ 	translate(155);
+  translate(200);
+  
+  */
+  
+  //H2.2 b
+  
+
+  var product={125:"lcd monitor",111:"led display",133:"wirelles keyboard",144:"hard disc",155:"ram memory 1200Mhz"};
+    
+  var id;
+  function translate(id){
+  
+  	switch(id) {
+      case 111:
+        return console.log(product[111]);
+        break;
+     	 case 125:
+        return console.log(product[125]);
+        break;
+       case 133:
+        return console.log(product[133]);
+        break;
+       case 144:
+        return console.log(product[144]);
+        break;
+       case 155:
+        return console.log(product[144]);
+        break;
+       default:
+       return console.log("unknow product");
+       
+    }
+   
+  }
+
+
 
  //H2.3 a
   
