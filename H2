@@ -159,3 +159,11 @@ Przycisk.writeName();
      console.log(y);
   }
   
+  
+ 
+ //H2.4a
+
+var dayCode={1: "Monday",2:"Tuesday" ,3:"Wednesday",4:"Thursday",5:"Frayday",6:"Saturday",7:"Sunday" };
+console.log(dayCode[4]);
+ 
+  
