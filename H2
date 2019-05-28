@@ -241,5 +241,26 @@ var day;
  week(5);
  week(8);
   
- 
-  
+ //H2.5
+
+function sayHello(hour){
+
+if (hour >=0 && hour <=12){
+		return console.log("good morning");
+	} else if (hour >12 && hour <=18) {  
+  	return console.log("good afternoon");
+  } else if (hour >18 && hour <=22) {  
+  	return console.log("good evening");
+  } else if (hour >22 && hour <=24) {  
+  	return console.log("good night");
+  } else {
+  console.log("wrong hour");
+  }
+}
+
+sayHello(-10);
+sayHello(5);
+sayHello(14);
+sayHello(21);
+sayHello(23);
+sayHello(44);
