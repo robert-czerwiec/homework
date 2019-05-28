@@ -107,7 +107,7 @@ Przycisk.writeName();
  
   translate(111);
   translate(133);
- 	translate(155);
+  translate(155);
   translate(200);
   
   */
@@ -143,6 +143,10 @@ Przycisk.writeName();
    
   }
 
+  translate(111);
+  translate(133);
+  translate(155);
+  translate(200);
 
 
  //H2.3 a
@@ -164,6 +168,78 @@ Przycisk.writeName();
  //H2.4a
 
 var dayCode={1: "Monday",2:"Tuesday" ,3:"Wednesday",4:"Thursday",5:"Frayday",6:"Saturday",7:"Sunday" };
-console.log(dayCode[4]);
+
+var day;
+  function week(day){
+  
+  if (day==1) {
+      return alert(dayCode[day]);
+    } else if (day==2) {  
+  		return alert(dayCode[day]);
+    } else if (day==3) {  
+  		return alert(dayCode[day]);
+    } else if (day==4) {  
+  		return  alert(dayCode[day]);
+    } else if (day==5) {  
+  		return  alert(dayCode[day]);
+    } else if (day==6) {  
+  		return  alert(dayCode[day]);
+    } else if (day==7) {  
+  		return  alert(dayCode[day]);
+    } else  {  
+  		return  alert("incorrect day");
+    } 
+   
+  }
+
+
+ week(1);
+ week(2);
+ week(5);
+ week(8);
+ 
+ 
+ 
+ //H2.4 b
+ 
+  var product={125:"lcd monitor",111:"led display",133:"wirelles keyboard",144:"hard disc",155:"ram memory 1200Mhz"};
+    
+  var day;
+  function week(day){
+  
+  	switch(day) {
+      case 1:
+        return alert(dayCode[day]);
+        break;
+     	 case 2:
+        return alert(dayCode[day]);
+        break;
+       case 3:
+        return alert(dayCode[day]);
+        break;
+       case 4:
+        return alert(dayCode[day]);
+        break;
+       case 5:
+        return alert(dayCode[day]);
+        break;
+       case 6:
+        return alert(dayCode[day]);
+        break;
+       case 7:
+        return alert(dayCode[day]);
+        break;
+       default:
+       return alert("incorrect day");
+       
+    }
+   
+  }
+  
+ week(1);
+ week(2);
+ week(5);
+ week(8);
+  
  
   
