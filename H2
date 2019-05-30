@@ -264,3 +264,18 @@ sayHello(14);
 sayHello(21);
 sayHello(23);
 sayHello(44);
+
+
+//H2.5
+  
+ function dodaj(a){
+   var b=10;
+   return function (c){
+   	return a+b+c;
+   }
+ }
+ 
+ var dodaj20=dodaj(20);
+ console.log(dodaj20);
+ console.log(dodaj20(5));
+ 
