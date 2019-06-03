@@ -8,11 +8,11 @@ H3.2
           <script>
                 $( function() {                
                 $('#temp').click( function() {
-                  $.get( "http://api.openweathermap.org/data/2.5/weather?q=CITYNAME&APPID=e0078bc65823bc366870518f9f9d2032", success, "json" );
+                  $.get( "http://api.openweathermap.org/data/2.5/weather?q=Krakow&APPID=e0078bc65823bc366870518f9f9d2032", success, "json" );
                 } );
 
                 function success( apiWeather ) {
-                  var message =  apiWeather.temp_min + "K";
+                  var message =  apiWeather.main.temp_min + " K";
                   alert( message );
                 }
                 
