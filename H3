@@ -30,3 +30,42 @@ H3.2
 
      </body>
 </html>
+
+H3.3
+
+<html>
+     <head>
+          <meta charset="UTF-8" />
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+          <script>
+              var shouldShow = false;
+                $( function() {                
+                    $('#start').click( function() {
+                        var shouldShow = true;
+                        $.get( "http://api.openweathermap.org/data/2.5/weather?q=Krakow&APPID=e0078bc65823bc366870518f9f9d2032", done, "json" );
+                    } );
+
+                    function done( apiWeather ) {
+                        var message =  Math.round((apiWeather.main.temp_min - 273.15)*10)/10 + "&degC";
+                        setInterval(function(){
+                        if(shouldShow) { 
+                            document.getElementById("temperature").innerHTML = message;
+                        } else 
+                        document.getElementById("temperature").innerHTML = "test zle";
+                        }, 1000);
+                    }
+                
+                } );
+                       
+                </script>
+     </head>
+     <body>
+            
+        City:<input type="text" name="city" id="city"><br>
+        
+        <button id="start">Start</button><br>
+        <button id="stop">Stop</button><br>
+        <button id="temperature">Temp</button>
+           
+     </body>
+</html>
