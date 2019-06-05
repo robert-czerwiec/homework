@@ -38,34 +38,58 @@ H3.3
           <meta charset="UTF-8" />
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
           <script>
-              var shouldShow = false;
+                function myFunction() {
+                    var x = document.getElementById("city");
+                    var text = "";
+                    var i;
+                    for (i = 0; i < x.length ;i++) {
+                    text += x.elements[i].value ;
+                    }
+                    document.getElementById("temperature2").innerHTML = text;
+                    //alert(text);
+                    return text;
+                }
+               
+
+
                 $( function() {                
                     $('#start').click( function() {
+                        text=myFunction();
+                        //alert(text);
                         var shouldShow = true;
-                        $.get( "http://api.openweathermap.org/data/2.5/weather?q=Krakow&APPID=e0078bc65823bc366870518f9f9d2032", done, "json" );
+                        $.get( 'http://api.openweathermap.org/data/2.5/weather?q='+text+'&APPID=e0078bc65823bc366870518f9f9d2032', done, "json" );
                     } );
 
                     function done( apiWeather ) {
+                        var shouldShow = true;
                         var message =  Math.round((apiWeather.main.temp_min - 273.15)*10)/10 + "&degC";
                         setInterval(function(){
                         if(shouldShow) { 
                             document.getElementById("temperature").innerHTML = message;
                         } else 
-                        document.getElementById("temperature").innerHTML = "test zle";
+                        document.getElementById("temperature").innerHTML = shouldShow;
                         }, 1000);
                     }
+
+                    document.getElementById("stop").onclick = function(){
+                    var shouldShow = false;
+                    document.getElementById("temperature").innerHTML = "Temp";
+                    };
                 
                 } );
-                       
+
                 </script>
      </head>
      <body>
-            
-        City:<input type="text" name="city" id="city"><br>
-        
-        <button id="start">Start</button><br>
-        <button id="stop">Stop</button><br>
-        <button id="temperature">Temp</button>
-           
+        <form id="city" >   
+        City:<input type="text"><br>
+    </form> 
+        <button onclick="myFunction()" type="submit" id="start">Start</button><br>
+        <button type="submit" id="stop">Stop</button><br>
+        <div id="temperature">Temp</div><br>
+        <div id="temperature2">Miasto</div>
+    </form> 
      </body>
 </html>
+
+
