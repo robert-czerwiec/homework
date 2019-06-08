@@ -5,23 +5,7 @@ H3.2
      <head>
           <meta charset="UTF-8" />
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-          <script>
-                $( function() {                
-                $('#temp').click( function() {
-                  $.get( "http://api.openweathermap.org/data/2.5/weather?q=Krakow&APPID=e0078bc65823bc366870518f9f9d2032", done, "json" );
-                } );
-
-                function done( apiWeather ) {
-                  var message =  Math.round((apiWeather.main.temp_min - 273.15)*10)/10 + "&degC";
-                 
-                  setInterval(function(){
-                    document.getElementById("temp").innerHTML = message;
-                   }, 5000);
-                 }
-                
-                } );
-                       
-                </script>
+          
      </head>
      <body>
         <h1>Temperature in Krakow:</h1>
@@ -29,6 +13,35 @@ H3.2
         <div id="temp">Temp</div>
 
      </body>
+
+     <script>
+                           
+      function getWeather(callback){
+        $.ajax({
+          url:"http://api.openweathermap.org/data/2.5/weather?q=Krakow&APPID=e0078bc65823bc366870518f9f9d2032",
+          type: "get"
+          //type:"post"
+          //data: 
+        }).done(callback);
+      }
+        
+
+      setInterval(function(){
+        getWeather(weatherCallback);
+      }, 1000);
+
+      function weatherCallback( apiWeather ) {
+       
+        var message =  Math.round((apiWeather.main.temp_min - 273.15)*10)/10 + "&degC";
+       
+        
+          document.getElementById("temp").innerHTML = message;
+         
+       }
+      
+      
+             
+      </script>
 </html>
 
 H3.3
@@ -37,8 +50,22 @@ H3.3
      <head>
           <meta charset="UTF-8" />
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-          <script>
-                function myFunction() {
+          
+     </head>
+     <body>
+      <form id="city" >   
+      City:<input type="text" value="staszow"><br>
+  </form> 
+      <button onclick="myFunction()" type="submit" id="start">Start</button><br>
+      <button type="submit" id="stop">Stop</button><br>
+      <div id="temperature">Temp</div><br>
+      <div id="temperature2">Miasto</div>
+  </form> 
+   </body>
+
+     <script>
+
+      function myFunction() {
                     var x = document.getElementById("city");
                     var text = "";
                     var i;
@@ -46,50 +73,43 @@ H3.3
                     text += x.elements[i].value ;
                     }
                     document.getElementById("temperature2").innerHTML = text;
-                    //alert(text);
+                    alert(text);
                     return text;
                 }
-               
+                           
+      function getWeather(callback,city){
+        $.ajax({
+          url:"http://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID=e0078bc65823bc366870518f9f9d2032",
+          type: "get"
+          //type:"post"
+          //data: 
+        }).done(callback);
+      }
 
+      
+      getWeather(function(response){
+        var message = Math.round((response.main.temp_min - 273.15)*10)/10 + "&degC";
+       
+        
+         document.getElementById("temperature").innerHTML = message;
+          alert(message);
+        },myFunction());
+      
 
-                $( function() {                
-                    $('#start').click( function() {
-                        text=myFunction();
-                        //alert(text);
-                        var shouldShow = true;
-                        $.get( 'http://api.openweathermap.org/data/2.5/weather?q='+text+'&APPID=e0078bc65823bc366870518f9f9d2032', done, "json" );
-                    } );
+      //setInterval(function(){
+      //  getWeather(weatherCallback);
+      //}, 1000);
 
-                    function done( apiWeather ) {
-                        var shouldShow = true;
-                        var message =  Math.round((apiWeather.main.temp_min - 273.15)*10)/10 + "&degC";
-                        setInterval(function(){
-                        if(shouldShow) { 
-                            document.getElementById("temperature").innerHTML = message;
-                        } else 
-                        document.getElementById("temperature").innerHTML = shouldShow;
-                        }, 1000);
-                    }
-
-                    document.getElementById("stop").onclick = function(){
-                    var shouldShow = false;
-                    document.getElementById("temperature").innerHTML = "Temp";
-                    };
-                
-                } );
-
-                </script>
-     </head>
-     <body>
-        <form id="city" >   
-        City:<input type="text"><br>
-    </form> 
-        <button onclick="myFunction()" type="submit" id="start">Start</button><br>
-        <button type="submit" id="stop">Stop</button><br>
-        <div id="temperature">Temp</div><br>
-        <div id="temperature2">Miasto</div>
-    </form> 
-     </body>
+     // function weatherCallback( apiWeather ) {
+       
+       // var message =  Math.round((apiWeather.main.temp_min - 273.15)*10)/10 + "&degC";
+       
+        
+       //   document.getElementById("temp").innerHTML = message;
+         
+       //}
+      
+      
+             
+      </script>
 </html>
-
-
