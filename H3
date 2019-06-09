@@ -56,60 +56,59 @@ H3.3
       <form id="city" >   
       City:<input type="text" value="staszow"><br>
   </form> 
-      <button onclick="myFunction()" type="submit" id="start">Start</button><br>
+      <button   id="start">Start</button><br>
       <button type="submit" id="stop">Stop</button><br>
       <div id="temperature">Temp</div><br>
       <div id="temperature2">Miasto</div>
   </form> 
-   </body>
+</body>
 
-     <script>
-
-      function myFunction() {
-                    var x = document.getElementById("city");
-                    var text = "";
-                    var i;
-                    for (i = 0; i < x.length ;i++) {
-                    text += x.elements[i].value ;
-                    }
-                    document.getElementById("temperature2").innerHTML = text;
-                    alert(text);
-                    return text;
-                }
-                           
-      function getWeather(callback,city){
-        $.ajax({
-          url:"http://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID=e0078bc65823bc366870518f9f9d2032",
-          type: "get"
-          //type:"post"
-          //data: 
-        }).done(callback);
+  <script>
+     
+    function myFunction() {
+      var x = document.getElementById("city");
+      var text = "";
+      var i;
+      for (i = 0; i < x.length ;i++) {
+        text += x.elements[i].value ;
       }
+      document.getElementById("temperature2").innerHTML = text;
+      return text;
+    }
+                           
+    function getWeather(callback,city){
+      $.ajax({
+        url:"http://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID=e0078bc65823bc366870518f9f9d2032",
+        type: "get"
+      }).done(callback);
+    }
 
-      
-      getWeather(function(response){
-        var message = Math.round((response.main.temp_min - 273.15)*10)/10 + "&degC";
-       
-        
-         document.getElementById("temperature").innerHTML = message;
-          alert(message);
-        },myFunction());
-      
+/* 
+    function test (shouldShow){
+        //var shouldShow = false;
+        document.getElementById("temperature").innerHTML = "Temp";
+        //alert(shouldShow);
+        return shouldShow;
+    }
 
-      //setInterval(function(){
-      //  getWeather(weatherCallback);
-      //}, 1000);
+    document.getElementById("stop").onclick = function(){
+      var shouldShow = false;
+      test(shouldShow);
+      alert (shouldShow);
+    } 
+*/
+    document.getElementById("start").onclick = function(){ 
+     // var shouldShow = true; 
+      setInterval(function(){
+       // shouldShow=  test();
+      //alert(shouldShow);
+        getWeather(function(response){
+          var message = Math.round((response.main.temp_min - 273.15)*10)/10 + "&degC";
+          document.getElementById("temperature").innerHTML = message;
+          },myFunction());
+        },3000);
+    }
+                 
+  </script>
 
-     // function weatherCallback( apiWeather ) {
-       
-       // var message =  Math.round((apiWeather.main.temp_min - 273.15)*10)/10 + "&degC";
-       
-        
-       //   document.getElementById("temp").innerHTML = message;
-         
-       //}
-      
-      
-             
-      </script>
 </html>
