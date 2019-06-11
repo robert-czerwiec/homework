@@ -1,0 +1,54 @@
+<html>
+     <head>
+          <meta charset="UTF-8" />
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+          
+     </head>
+     <body>
+      <form id="username" >   
+      Username:<input type="text"><br>
+  </form> 
+      <button   id="start">Start</button><br>      
+      </form> 
+</body>
+
+  <script>
+
+     
+    function myFunction() {
+      var x = document.getElementById("username");
+      var text = "";
+      var i;
+      for (i = 0; i < x.length ;i++) {
+        text += x.elements[i].value ;
+      }
+      return text;
+    }
+                           
+    function getId(callback,name){
+      $.ajax({
+        url:"https://jsonplaceholder.typicode.com/users?username="+name,
+        type: "get"
+      }).done(callback);
+    }
+    function getDetails(callback,details){
+      $.ajax({
+        url:"https://jsonplaceholder.typicode.com/todos?id=14",
+        type: "get"
+      }).done(callback);
+    }
+
+    document.getElementById("start").onclick = function(){ 
+        getId(function(response){
+            console.log(response);
+            var message= response.id;
+            getDetails(function(response2){
+                console.log(response2);
+                },message);
+        },myFunction());
+       
+    }
+                 
+  </script>
+
+</html>
