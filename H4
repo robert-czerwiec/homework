@@ -24,7 +24,7 @@
       }
       return text;
     }
-                           
+                       
     function getId(callback,name){
       $.ajax({
         url:"https://jsonplaceholder.typicode.com/users?username="+name,
@@ -33,22 +33,22 @@
     }
     function getDetails(callback,details){
       $.ajax({
-        url:"https://jsonplaceholder.typicode.com/todos?id=14",
+        url:"https://jsonplaceholder.typicode.com/todos?id="+details,
         type: "get"
       }).done(callback);
     }
 
     document.getElementById("start").onclick = function(){ 
         getId(function(response){
-            console.log(response);
-            var message= response.id;
+            var message= response[0].id;
             getDetails(function(response2){
-                console.log(response2);
-                },message);
+              alert(response2[0].userId);
+              alert(response2[0].id);
+              alert(response2[0].title);
+              alert(response2[0].completed);
+            },message);
         },myFunction());
        
     }
-                 
   </script>
-
 </html>
