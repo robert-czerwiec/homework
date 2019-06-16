@@ -1,0 +1,74 @@
+<html>
+     <head>
+          <meta charset="UTF-8" />
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+          
+     </head>
+     <body>
+         
+      E-mail:<input id="email" value="Sincere@april.biz" type="text"><br>
+ 
+      <button id="start">Start</button><br>   
+      <div id="photoAjax"></div>   
+      </form> 
+</body>
+
+  <script>
+
+     
+    function myFunction() {
+      var x = document.getElementById("email");
+      return x.value;
+    }
+                       
+    function getId(email){
+      return  new Promise(function(resolve, reject) {
+        $.ajax({
+          url:"https://jsonplaceholder.typicode.com/users?email="+email,
+          type: "get"
+        }).done(function(response){
+          var id=response[0].id;
+          resolve(id);
+        }).fail(function(jqXHR,textStatus,errorThrown){
+           reject("Brak takiego użytkownika w bazie");
+        })
+      });
+      
+     }
+
+    function getDetails(id){
+      return  new Promise(function(resolve, reject){
+        $.ajax({
+          url:"https://jsonplaceholder.typicode.com/photos?id="+id,
+          type: "get"
+        }).done(function(response){
+          var details=response[0];
+          resolve(details);
+        }).fail(function(){
+          reject("Brak takiego identyfikatora w bazie");
+        })
+      });
+      
+    }
+
+
+document.getElementById("start").onclick = function(){ 
+    var email=myFunction();
+    getId(email).then(function(id){
+        //console.log(id);
+        getDetails(id).then(function(details){
+            //var url= details.url;
+            var urlPhoto= "<img src="+details.url+">";
+            console.log(urlPhoto);
+            document.getElementById("photoAjax").innerHTML = urlPhoto;
+        }).catch(function(message){
+        alert(message);
+        });
+    }).catch(function(message){
+        alert(message);
+    });
+
+}
+
+  </script>
+</html>
