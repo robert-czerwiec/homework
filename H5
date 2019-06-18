@@ -55,9 +55,7 @@
 document.getElementById("start").onclick = function(){ 
     var email=myFunction();
     getId(email).then(function(id){
-        //console.log(id);
         getDetails(id).then(function(details){
-            //var url= details.url;
             var urlPhoto= "<img src="+details.url+">";
             console.log(urlPhoto);
             document.getElementById("photoAjax").innerHTML = urlPhoto;
