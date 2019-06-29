@@ -1,0 +1,72 @@
+<html>
+     <head>
+        <meta charset="UTF-8" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+          
+     </head>
+     <body>
+     
+        <form id="uform">
+            <input name="name" type="text" placeholder="name"/>
+            <input name="surname" type="text" placeholder="surname"/>
+            <input name="age" type="number" step="0.5" placeholder="age"/>
+            <input name="data" type="text" placeholder="date of birth"/>
+            <input name="email" type="text" placeholder="email address"/>
+        </form>
+        <button id="ok">ok</button>
+        <button id="save">save</button>
+            
+            
+           
+
+         
+    
+ 
+    
+</body>
+
+  <script>
+
+    $("#ok").click(()=>{
+        var serializedForm = $("#uform").serializeArray();
+        //console.log(serializedForm);
+        var jsonForm = {};
+        serializedForm.forEach((el)=>{
+            jsonForm[el.name] = el.value;
+        });
+        console.log(jsonForm);
+
+        $.ajax({
+        type:"POST",
+        url: "https://jsonplaceholder.typicode.com/users",
+        data: {
+           jsonForm
+        }
+        }).done(()=>{
+            alert("USER ADDED");
+        })
+    });
+
+
+    $("#save").click(()=>{
+        var serializedForm = $("#uform").serializeArray();
+        //console.log(serializedForm);
+        var jsonForm = {};
+        serializedForm.forEach((el)=>{
+            jsonForm[el.name] = el.value;
+        });
+        console.log(jsonForm);
+//dodawanie
+
+
+//koniec
+
+    });
+
+
+
+
+
+    
+  </script>
+</html>
