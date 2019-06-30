@@ -5,24 +5,53 @@
           
      </head>
      <body>
-     
-        <form id="uform">
-            <input name="name" type="text" placeholder="name"/>
-            <input name="surname" type="text" placeholder="surname"/>
-            <input name="age" type="number" step="0.5" placeholder="age"/>
-            <input name="data" type="text" placeholder="date of birth"/>
-            <input name="email" type="text" placeholder="email address"/>
-        </form>
-        <button id="ok">ok</button>
-        <button id="save">save</button>
-            
-            
-           
 
-         
-    
- 
-    
+    <script type="text/javascript">
+
+    function getCookie(name){
+        var re=new RegExp(name+"=([^;]+)");
+        var value=re.exec(document.cookie);
+        return(value!=null)?unescape(value[1]):null;
+    }
+
+    var today=new Date();
+    var expiry=new Date(today.getTime()+30*24*3600*1000);
+    //var expired=new Date(today.getTime()-24*3600*1000);
+    function setCookie(name,value){
+        alert(name);
+        alert(value);
+        document.cookie = "nazwaCookie=wartoscCookie";
+        document.cookie=name+"="+escape(value)+"; path=/; expires="+expiry.toGMTString();
+    }
+
+    function storeValues(form){
+        console.log(form.name.value);
+        console.log(form.surname.value);
+        console.log(form.age.value);
+        console.log(form.data.value);
+        console.log(form.email.value);
+        setCookie("name",form.name.value);
+        setCookie("surname",form.surname.value);
+        setCookie("age",form.age.value);
+        setCookie("data",form.data.value);
+        setCookie("email",form.email.value);
+        alert("ok");
+        return true;
+    }
+
+    </script>
+     
+        <form name="myForm" id="uform" onsubmit="return storeValues(this);">
+            <input name="name" type="text" value="" placeholder="name" />
+            <input name="surname" type="text" value=""placeholder="surname"/>
+            <input name="age" type="number" step="0.5" value="" placeholder="age"/>
+            <input name="data" type="text" value="" placeholder="date of birth"/>
+            <input name="email" type="text" value="" placeholder="email address"/>
+       
+        <button id="ok">ok</button>
+        <button type="submit"  id="save" >save</button>
+            
+       </form>
 </body>
 
   <script>
@@ -34,7 +63,7 @@
         serializedForm.forEach((el)=>{
             jsonForm[el.name] = el.value;
         });
-        console.log(jsonForm);
+        //console.log(jsonForm);
 
         $.ajax({
         type:"POST",
@@ -47,22 +76,11 @@
         })
     });
 
-
-    $("#save").click(()=>{
-        var serializedForm = $("#uform").serializeArray();
-        //console.log(serializedForm);
-        var jsonForm = {};
-        serializedForm.forEach((el)=>{
-            jsonForm[el.name] = el.value;
-        });
-        console.log(jsonForm);
-//dodawanie
-
-
-//koniec
-
-    });
-
+    if(name=getCookie("name"))document.myForm.name.value=name;
+    if(surname=getCookie("surname"))document.myForm.surname.value=surname;
+    if(age=getCookie("age"))document.myForm.age.value=age;
+    if(data=getCookie("data"))document.myForm.data.value=data;
+    if(email=getCookie("email"))document.myForm.email.value=email;
 
 
 
