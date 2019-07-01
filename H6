@@ -8,36 +8,27 @@
 
     <script type="text/javascript">
 
-    function getCookie(name){
-        var re=new RegExp(name+"=([^;]+)");
-        var value=re.exec(document.cookie);
-        return(value!=null)?unescape(value[1]):null;
-    }
+        function getCookie(name){
+            var re=new RegExp(name+"=([^;]+)");
+            var value=re.exec(document.cookie);
+            return(value!=null)?unescape(value[1]):null;
+        }
 
-    var today=new Date();
-    var expiry=new Date(today.getTime()+30*24*3600*1000);
-    //var expired=new Date(today.getTime()-24*3600*1000);
-    function setCookie(name,value){
-        alert(name);
-        alert(value);
-        document.cookie = "nazwaCookie=wartoscCookie";
-        document.cookie=name+"="+escape(value)+"; path=/; expires="+expiry.toGMTString();
-    }
+        var today=new Date();
+        var expiry=new Date(today.getTime()+30*24*3600*1000);
+        function setCookie(name,value){
+            document.cookie=name+"="+escape(value)+"; path=/; expires="+expiry.toGMTString();
+        }
 
-    function storeValues(form){
-        console.log(form.name.value);
-        console.log(form.surname.value);
-        console.log(form.age.value);
-        console.log(form.data.value);
-        console.log(form.email.value);
-        setCookie("name",form.name.value);
-        setCookie("surname",form.surname.value);
-        setCookie("age",form.age.value);
-        setCookie("data",form.data.value);
-        setCookie("email",form.email.value);
-        alert("ok");
-        return true;
-    }
+        function storeValues(form){
+            setCookie("name",form.name.value);
+            setCookie("surname",form.surname.value);
+            setCookie("age",form.age.value);
+            setCookie("data",form.data.value);
+            setCookie("email",form.email.value);
+            alert("save");
+            return true;
+        }
 
     </script>
      
@@ -58,13 +49,11 @@
 
     $("#ok").click(()=>{
         var serializedForm = $("#uform").serializeArray();
-        //console.log(serializedForm);
         var jsonForm = {};
         serializedForm.forEach((el)=>{
             jsonForm[el.name] = el.value;
         });
-        //console.log(jsonForm);
-
+        
         $.ajax({
         type:"POST",
         url: "https://jsonplaceholder.typicode.com/users",
@@ -88,3 +77,6 @@
     
   </script>
 </html>
+
+
+
