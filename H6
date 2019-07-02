@@ -33,16 +33,17 @@
     </script>
      
         <form name="myForm" id="uform" onsubmit="return storeValues(this);">
-            <input name="name" type="text" value="" placeholder="name" />
-            <input name="surname" type="text" value=""placeholder="surname"/>
-            <input name="age" type="number" step="0.5" value="" placeholder="age"/>
-            <input name="data" type="text" value="" placeholder="date of birth"/>
-            <input name="email" type="text" value="" placeholder="email address"/>
+            <input name="name" type="text" value="" placeholder="name" required />
+            <input name="surname" type="text" value=""placeholder="surname" required />
+            <input name="age" type="number" max="100" value="" placeholder="age" required />
+            <input name="data" type="date"  min="1900-01-01" max="2019-12-31" value="" placeholder="date of birth" required />
+            <input name="email" type="email" value="" placeholder="email address" required />
        
-        <button id="ok">ok</button>
+        
         <button type="submit"  id="save" >save</button>
-            
-       </form>
+        <button id="ok">ok</button>
+        </form>
+       
 </body>
 
   <script>
